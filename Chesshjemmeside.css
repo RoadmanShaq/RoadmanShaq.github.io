@@ -2,6 +2,10 @@ html, body {
   margin: 0;
 }
 
+p {
+  text-align: center;
+
+}
 .logopicture {
   display: block;
   margin-left: auto;
