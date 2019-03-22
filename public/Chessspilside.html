@@ -3,14 +3,19 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Huojisskak</title>
-	  <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
-		<script>
-		// Initialize Firebase
-		var config = {
-			apiKey: "AIzaSyCbI422zere5Hy1i7mxfX_IVczW9P-x9ws",
-			authdomain "https://skak-a0188.firebaseapp.com"
-			databaseurl ""
-		}
+	<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+<script>
+ // Initialize Firebase
+ var config = {
+	 apiKey: "AIzaSyCbI422zere5Hy1i7mxfX_IVczW9P-x9ws",
+	 authDomain: "skak-a0188.firebaseapp.com",
+	 databaseURL: "https://skak-a0188.firebaseio.com",
+	 projectId: "skak-a0188",
+	 storageBucket: "skak-a0188.appspot.com",
+	 messagingSenderId: "709721032543"
+ };
+ firebase.initializeApp(config);
+</script>
   <link rel="javascript" href="Chessspilside.js">
   <link rel="stylesheet" href="Chessspilside.css">
 	<link rel "chatjs" href="Chatbox.js">
