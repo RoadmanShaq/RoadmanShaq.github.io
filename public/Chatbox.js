@@ -45,6 +45,21 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
 var board = ChessBoard('board' , cfg);
 var chess = new Chess();
 
+/*
+når siden loader, check om der er et spil id
+hvis ikke, lav et ny spil
+ellers load eksisterende spil
+
+når du tager et træk, send besked til modstander
+når du modtager besked fra modstander, flyt hans brik
+
+hvis spillet er forbi, vis besked på skærm
+
+
+
+
+*/
+
 
 var chess = new Chess();
 
