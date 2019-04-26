@@ -1,1 +1,14 @@
+#board{
+  margin-left: auto;
 
+}
+textarea {
+  font-style: oblique;
+  width: 45%
+}
+.boxed {
+padding-right: 645px;
+background-color: white;
+border: 1px solid black;
+padding-bottom: 48%;
+}

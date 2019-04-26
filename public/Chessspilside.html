@@ -4,24 +4,22 @@
 	<meta charset="UTF-8">
 	<title>Huojisskak</title>
 	<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-<script>
- // Initialize Firebase
- var config = {
-	 apiKey: "AIzaSyCbI422zere5Hy1i7mxfX_IVczW9P-x9ws",
-	 authDomain: "https://skak-a0188.firebaseapp.com",
-	 databaseURL: "https://skak-a0188.firebaseio.com",
-	 projectId: "skak-a0188",
-	 storageBucket: "skak-a0188.appspot.com",
-	 messagingSenderId: "709721032543"
- };
- firebase.initializeApp(config);
-</script>
-  <link rel="javascript" href="Chessspilside.js">
+
   <link rel="stylesheet" href="Chessspilside.css">
-	<link rel "chatjs" href="Chatbox.js">
+	<link rel="stylesheet" href="css/chessboard-0.3.0.css">
+
 </head>
 <body>
+	<div1 class=boxed></div1>
 	<pre id='data'></pre>
-    <script src="script.js"></script>
+	<div id="board" style="width: 600px"></div>
+	<textarea id="input"></textarea>
+		<button id="send">Send</button>
+
+<script src="jquery-1.10.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"></script>
+	<script src="js/chessboard-0.3.0.js"></script>
+	<script src="Chatbox.js"></script>
+
 </body>
 </html>
