@@ -277,8 +277,6 @@ db.collection("tester").doc("LA").update({
     console.error("Error updating document: ", error);
 });
 
-
-
 /*
 var ref = firebase.database().ref();
 ref.on("value", function(snapshot){
