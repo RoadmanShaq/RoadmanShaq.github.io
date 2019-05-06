@@ -22,20 +22,5 @@
 	<script src="js/chessboard-0.3.0.js"></script>
 	<script src="Chatbox.js"></script>
 
-	<script>
-
-function nytID() {
-	var a = new Uint8Array(32);
-	window.crypto.getRandomValues(a);
-	return a;
-}
-function arrayToHex(a) {
-	return Array.prototype.reduce.call(a, (s, e) => s + e.toString(16).padStart(2, "0"), "");
-}
-
-var mitid = arrayToHex(nytID());
-
-
-
 </body>
 </html>

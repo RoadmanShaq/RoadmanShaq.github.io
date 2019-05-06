@@ -12,6 +12,113 @@ firebase.initializeApp(config);
 
 const db = firebase.firestore();
 
+let spil;
+let spilID;
+let spillerID;
+let opponentID;
+let spillerSecret;
+let opponentSecret;
+
+if (document.location.hash) {
+  spilID = document.location.hash.substring(1);
+}
+else {
+  spilID = arrayToHex(nytID());
+  document.location.hash = spilID;
+}
+
+spil = localStorage.getItem("spil-" + spilID);
+if (spil) {
+  spil = JSON.parse(spil);
+}
+else {
+  spil = {
+    spilID: spilID,
+    spillerID: arrayToHex(nytID()),
+    opponentID: null,
+    spillerSecret: arrayToHex(nytID()),
+    opponentSecret: null
+  };
+  localStorage.setItem("spil-" + spilID, JSON.stringify(spil));
+}
+
+db.collection(spilID).onSnapshot(function(snap) {
+  snap.docChanges().forEach(function (change) {
+    if (change.type == "added") {
+      console.log("Added data: ", change.doc.data());
+      let data = change.doc.data();
+      output.innerHTML += `${data.sender}: ${data.text}\n`;
+    }
+    if (change.type == "modified") {
+      console.log("Modified data: ", change.doc.data());
+    }
+    if (change.type == "removed") {
+      console.log("Removed data: ", change.doc.data());
+    }
+  });
+});
+
+spillerID = spil.spillerID;
+opponentID = spil.opponentID;
+spillerSecret = spil.spillerSecret;
+opponentSecret = spil.opponentSecret;
+
+let setupDoc = getgame();
+
+if (setupDoc.exists) {
+  console.log("exists:", setupDoc);
+}
+else {
+  setupgame();
+}
+
+async function getgame() {
+  return await db.collection(spilID).doc("setup").get({
+    source: "server"
+  })
+  .then(function(snap) {
+      console.log("Game found!", snap);
+      return snap;
+  })
+  .catch(function(error) {
+      console.error("Error getting game: ", error);
+  });
+}
+
+async function setupgame() {
+  return await db.collection(spilID).doc("setup").set({
+      type: "setup",
+      spillerID: spillerID,
+      spillerSecret: spillerSecret,
+      opponentID: null,
+      opponentSecret: null
+  })
+  .then(function() {
+      console.log("New game created!");
+  })
+  .catch(function(error) {
+      console.error("Error creating game: ", error);
+  });
+}
+
+async function joingame() {
+  return await db.collection(spilID).doc("setup").update({
+      type: "setup",
+      spillerID: spillerID
+  })
+  .then(function() {
+      console.log("New game created!");
+  })
+  .catch(function(error) {
+      console.error("Error creating game: ", error);
+  });
+}
+
+
+
+
+
+
 
 
 var cfg = {
@@ -276,6 +383,18 @@ db.collection("tester").doc("LA").update({
     // The document probably doesn't exist.
     console.error("Error updating document: ", error);
 });
+
+
+function nytID() {
+	var a = new Uint8Array(32);
+	window.crypto.getRandomValues(a);
+	return a;
+}
+function arrayToHex(a) {
+	return Array.prototype.reduce.call(a, (s, e) => s + e.toString(16).padStart(2, "0"), "");
+}
+
+//var mitid = arrayToHex(nytID());
 
 /*
 var ref = firebase.database().ref();
